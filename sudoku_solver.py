@@ -9,14 +9,14 @@ def main(stringified_board):
     
     # Parse board
     board = unstringify_board(stringified_board)
-
+    
     # Validate sudoku puzzle
     if not is_valid_sudoku(board):
         return "Invalid sudoku puzzle"
     
     # Solve sudoku
-    solve_sudoku(board)
-
+    solve(board)
+    
     # Stringify output board
     return "".join([x for row in range(9) for x in board[row]])
 #------------------------------------------------------------------------------
@@ -29,7 +29,8 @@ def unstringify_board(stringified_board):
     board = [[] for x in range(9)]
 
     for i in range(9):
-        board[i] = list(stringified_board[i:i+9])
+        row_start = 9*i
+        board[i] = list(stringified_board[row_start: row_start + 9])
     
     return board
 #------------------------------------------------------------------------------
@@ -49,7 +50,7 @@ def is_valid_sudoku(board):
     
     cols = [set() for _ in range(9)]
     squares = [[set() for _ in range(3)] for x in range(3)]
-
+    
     for row in range(9):
         rows = set()
         for col in range(9):
