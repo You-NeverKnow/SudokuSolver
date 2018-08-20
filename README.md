@@ -2,21 +2,23 @@
 A very basic sudoku solver using backtracking.
 
 ## Algorithm:
-1. Guess a solution for a square based.
-	- Nine Persistent row, col, and Square sets are maintained that keep track of all  
-		the numbers that are not yet present in that rol, col, Square respectively
-	- Possible solutions for a square are obtained by set intersection of a 
-		square's row, col, and Square set.
-	- Then, a solution is chosen at random.
+1. Guess a solution for a blank square on the board.
+	- Nine Persistent row, column, and big-square sets are maintained that keep track of all  
+		the numbers that are not yet present in that rol, column, big-square respectively
+	- Possible solutions for a square are obtained by set intersection of that 
+		square's row, column, and big-square set.
+	- Then, choose one of the possible numbers for that square.
 
 2. Guess solutions for all squares. Backtrack if a square is still empty,
 	but has no candidates for its solution.
 
 3. A complete solution is found when all squares are filled.
 
+## Proof of correctness:
+Since for every square, we only chose a number that is consistent with its row, column, and big-square
+Sudoku property is maintained. Thus, if all squares are filled, it implies that the puzzle is solved.
 
 ## Optimization:
-
 ### Choosing most constrained square for each step
 Both, choosing an arbitrary square, or choosing the most constrained square, 
 lead to a correct solution. However, choosing the most constrained square for next 
